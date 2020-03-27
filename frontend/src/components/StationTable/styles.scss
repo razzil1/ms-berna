@@ -1,0 +1,9 @@
+.table {
+  &__cell {
+    width: 20px;
+  }
+
+  &__striped {
+    background-color: rgba(173, 216, 230, 0.5);
+  }
+}

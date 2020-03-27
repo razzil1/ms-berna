@@ -1,0 +1,23 @@
+.section {
+  margin: 10px auto;
+
+  &__expend {
+    transform: rotate(0deg);
+  }
+
+  &__expended {
+    transform: rotate(180deg);
+  }
+
+  &__stations {
+    float: right;
+  }
+
+  &__transportation {
+    color: orange;
+  }
+
+  &__action {
+    width: 48px;
+  }
+}

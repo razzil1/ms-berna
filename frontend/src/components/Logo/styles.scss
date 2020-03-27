@@ -1,0 +1,12 @@
+.logo {
+  margin-top: 25px;
+
+  &__image {
+    vertical-align: bottom;
+  }
+
+  &__text {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 20px;
+  }
+}

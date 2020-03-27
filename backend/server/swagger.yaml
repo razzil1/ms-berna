@@ -1,0 +1,90 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Interventure Backend API
+tags:
+  - name: "connections"
+    description: Connections API
+servers:
+  - url: "http://localhost:8080/"
+paths:
+  /connections:
+    get:
+      tags:
+        - "connections"
+      summary: Return connections
+      parameters:
+        - $ref: "#/components/parameters/from"
+        - $ref: "#/components/parameters/to"
+        - $ref: "#/components/parameters/limit"
+        - $ref: "#/components/parameters/arrivalTime"
+      responses:
+        "200":
+          description: Returns list of connections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Connection"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+# SECTION: COMPONENTS
+components:
+  parameters:
+    from:
+      required: true
+      name: from
+      in: query
+      schema:
+        type: string
+    to:
+      required: true
+      name: to
+      in: query
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: number
+    arrivalTime:
+      name: arrivalTime
+      in: query
+      schema:
+        type: string
+  # RESPONSE TYPES
+  responses:
+    NotFound:
+      description: Entity not found.
+    BadRequest:
+      description: Required parameters are not provided.
+  # SECTION MODELS
+  schemas:
+    Connection:
+      type: object
+      properties:
+        duration:
+          type: string
+        transfers:
+          type: number
+        sections:
+          type: array
+          items:
+            $ref: "#/components/schemas/Section"
+    Section:
+      type: object
+      properties:
+        journey:
+          type: object
+          description: A journey, the transportation used by this section. Can be null.
+        walk:
+          type: object
+          description: Information about walking distance, if available. Can be null.
+        departure:
+          type: object
+          description: The departure checkpoint of the connection.
+        arrival:
+          type: object
+          description: The arrival checkpoint of the connection.
